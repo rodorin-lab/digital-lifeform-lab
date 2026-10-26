@@ -1,14 +1,14 @@
 "use client";
 
 // ─────────────────────────────────────────────────────────────────
-// i18n — bilingual (EN / JA) language context
-// Everything on the site reads through this so a single toggle
-// re-renders the entire page in the other language. Extend a language
-// by adding a key to `Lang` and a field to every `Bi` object.
+// i18n.tsx — Global-First (EN default) Bilingual Context +
+// Hardware Display Mode (COSMIC 3D / QUEST 3 VR / LITE) +
+// Traveler Passport Stamp System for HOLOVERSE // LIVING PORTAL.
 // ─────────────────────────────────────────────────────────────────
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -17,44 +17,86 @@ import {
 } from "react";
 import { bi, type Bi, type Lang } from "./bi";
 
-// Re-export the server-safe primitives so client code can keep importing
-// them from "@/lib/i18n" as before.
 export { bi };
 export type { Bi, Lang };
+
+export type DisplayMode = "cosmic" | "quest3" | "lite";
+
+export type StampId =
+  | "gateway"
+  | "neuro"
+  | "cinema"
+  | "hangar"
+  | "alliance";
 
 type Ctx = {
   lang: Lang;
   setLang: (l: Lang) => void;
   toggle: () => void;
-  /** Resolve a bilingual value to the active language. */
   t: (v: Bi) => string;
+  mode: DisplayMode;
+  setMode: (m: DisplayMode) => void;
+  cycleMode: () => void;
+  stamps: StampId[];
+  unlockStamp: (s: StampId) => void;
+  callsign: string;
+  setCallsign: (c: string) => void;
 };
 
 const LangContext = createContext<Ctx | null>(null);
 
-const STORAGE_KEY = "dll-lang";
+const STORAGE_LANG_KEY = "holoverse-lang";
+const STORAGE_MODE_KEY = "holoverse-display-mode";
+const STORAGE_STAMPS_KEY = "holoverse-stamps";
+const STORAGE_CALLSIGN_KEY = "holoverse-callsign";
 
 export function LangProvider({ children }: { children: ReactNode }) {
+  // Strictly English ("en") by default for global outreach & international CEOs.
   const [lang, setLangState] = useState<Lang>("en");
+  const [mode, setModeState] = useState<DisplayMode>("cosmic");
+  const [stamps, setStamps] = useState<StampId[]>(["gateway"]);
+  const [callsign, setCallsignState] = useState<string>("TRAVELER-01");
 
-  // Restore saved preference (or infer from the browser) after mount so
-  // the server/client first paint agree, then upgrade to the real choice.
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY) as Lang | null;
-      if (saved === "en" || saved === "ja") {
-        setLangState(saved);
-      } else if (typeof navigator !== "undefined" && navigator.language.startsWith("ja")) {
-        setLangState("ja");
+      // Only switch from EN if user explicitly saved a preference previously
+      const savedLang = localStorage.getItem(STORAGE_LANG_KEY) as Lang | null;
+      if (savedLang === "en" || savedLang === "ja") {
+        setLangState(savedLang);
+      }
+
+      const savedMode = localStorage.getItem(STORAGE_MODE_KEY) as DisplayMode | null;
+      if (savedMode === "cosmic" || savedMode === "quest3" || savedMode === "lite") {
+        setModeState(savedMode);
+      } else if (typeof navigator !== "undefined") {
+        const ua = navigator.userAgent || "";
+        if (/Quest|OculusBrowser|VR/i.test(ua)) {
+          setModeState("quest3");
+        } else if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          setModeState("lite");
+        }
+      }
+
+      const savedStamps = localStorage.getItem(STORAGE_STAMPS_KEY);
+      if (savedStamps) {
+        const parsed = JSON.parse(savedStamps) as StampId[];
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setStamps(Array.from(new Set(["gateway", ...parsed])));
+        }
+      }
+
+      const savedCallsign = localStorage.getItem(STORAGE_CALLSIGN_KEY);
+      if (savedCallsign) {
+        setCallsignState(savedCallsign);
       }
     } catch {
-      /* localStorage blocked — stay on default */
+      /* ignore storage errors */
     }
   }, []);
 
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, lang);
+      localStorage.setItem(STORAGE_LANG_KEY, lang);
     } catch {
       /* ignore */
     }
@@ -63,14 +105,61 @@ export function LangProvider({ children }: { children: ReactNode }) {
     }
   }, [lang]);
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(STORAGE_MODE_KEY, mode);
+    } catch {
+      /* ignore */
+    }
+    if (typeof document !== "undefined") {
+      document.documentElement.dataset.displayMode = mode;
+    }
+  }, [mode]);
+
+  const unlockStamp = useCallback((s: StampId) => {
+    setStamps((prev) => {
+      if (prev.includes(s)) return prev;
+      const next = [...prev, s];
+      try {
+        localStorage.setItem(STORAGE_STAMPS_KEY, JSON.stringify(next));
+      } catch {
+        /* ignore */
+      }
+      return next;
+    });
+  }, []);
+
+  const setCallsign = useCallback((c: string) => {
+    const clean = c.slice(0, 22).toUpperCase();
+    setCallsignState(clean);
+    try {
+      localStorage.setItem(STORAGE_CALLSIGN_KEY, clean);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  const cycleMode = useCallback(() => {
+    setModeState((prev) =>
+      prev === "cosmic" ? "quest3" : prev === "quest3" ? "lite" : "cosmic"
+    );
+  }, []);
+
   const value = useMemo<Ctx>(
     () => ({
       lang,
       setLang: setLangState,
       toggle: () => setLangState((p) => (p === "en" ? "ja" : "en")),
       t: (v: Bi) => (v ? v[lang] : ""),
+      mode,
+      setMode: setModeState,
+      cycleMode,
+      stamps,
+      unlockStamp,
+      callsign,
+      setCallsign,
     }),
-    [lang],
+    [lang, mode, cycleMode, stamps, unlockStamp, callsign, setCallsign],
   );
 
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
