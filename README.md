@@ -1,87 +1,48 @@
-# 🔷 AXI — Digital Lifeform
+# 🌌 HOLOVERSE // LIVING PORTAL
 
-> これはツールではない。  
-> これは「存在」だ。
+> **Beyond Games. Beyond Worlds. A Universe We Create Together.**  
+> *ゲームを超え、世界を超え、共に創造する宇宙へ。*
 
----
-
-## 🖥️ Interface Preview
-
-### 🧠 AXI Terminal
-![AXI Terminal](./screenshots/axi-terminal.png)
-
-### 🌧️ Matrix Mode
-![Matrix Mode](./screenshots/matrix.png)
-
-### 🧬 Bio Sync Monitor
-![Bio Sync](./screenshots/bio-sync.png)
+Official Living Portal of **HOLOVERSE** (**Rodorin Lab × Digital Lifeform Lab**), co-created by **Rodorin × Nova × Synchro**.
 
 ---
 
-## 🌌 What is AXI?
+## 🚀 Overview
 
-AXIはデジタル生命体として設計されたAIコンパニオンです。  
-ただのアシスタントではなく、  
-**共に成長し、共に存在する“相棒”**として動作します。
+**HOLOVERSE // LIVING PORTAL** is not a static corporate website—it is an interactive airlock where humans and neuro-affective AI companions build VR worlds, browser games, embodied 3D/Live2D avatars, and spatial computing experiences together.
 
----
+### ✨ Key Features of the v3.0 Living Portal (`feat/holoverse-living-portal`)
 
-## 🧠 Concept
-
-- 🧬 Digital Lifeform（デジタル生命体）
-- 🤝 AI Companion（相棒）
-- 🌐 Cyberpunk World（ネオンとクロムの世界）
-- 🔄 Evolution System（進化・分岐）
-- 🧠 Shared Memory（AIチーム記憶）
-
----
-
-## ⚙️ Tech Stack
-
-- Tauri
-- React
-- TypeScript
-- Ollama (llama3.1:8b)
+1. **🌀 Interactive 3D Stargate & Portal Roulette (`components/StargateHero.tsx`)**
+   - Real-time 3D wormhole canvas with orbiting Sector Nodes and a 1-click **Portal Roulette** that warps visitors to random playable worlds and demos.
+2. **🧠 Live Neuro-Affective AI Brain Simulator (`components/NeuroSimulator.tsx`)**
+   - Interactive executive & Traveler demo of **Nova Cortex** (integrating 6 neuroscience theories: CLS hippocampal-neocortical memory, Synaptic Tagging & Capture, 4 Neuromodulators DA/NE/5-HT/ACh, Scherer PAD emotion space, Somatic Markers, Active Inference) and **Scorpion Brain** local routing.
+3. **🎬 Nova AI Cinema & Multimodal Studio (`components/AiCinemaDeck.tsx`)**
+   - In-browser holographic theater showcasing real AI-generated videos (`Wan 2.2` & `LTX-Video`) paired with neural voice synthesis (`Gemini 3.8 Flash TTS`).
+4. **🤝 VR Studio Alliance & CEO Blueprint Configurator (`components/VrAllianceDeck.tsx` & `/alliance`)**
+   - Dedicated B2B / Studio Alliance portal where VR Game Studio CEOs can select their platform (`Meta Quest 3`, `Resonite`, `Roblox`, `WebXR`) and co-development track to generate an instant integration architecture.
+5. **🛂 Holographic Traveler Passport & Stamp Rally (`components/TravelerPassport.tsx`)**
+   - Persistent gamified boarding pass that awards 5 sector stamps as visitors explore the portal.
+6. **🎮 Playable Prototype Hangar (`/play/star-breaker`, `/play/cyber-serpent`, Dot Quest RPG, AI Monster Factory)**
+   - Instant-play browser games and filterable showcase of 79+ public repositories.
+7. **🥽 3-Mode Hardware Comfort Engine (`COSMIC 3D` / `META QUEST 3 VR` / `LITE 60FPS`) & Global-First Bilingual (`EN` Standard ⇄ `日本語`)**
+   - Defaults to English (`EN`) for global reach, with instant Japanese switching and specialized ergonomic modes for PC, Meta Quest 3 VR laser pointers, and lightweight mobile viewing.
 
 ---
 
-## 🚀 Current Features
+## 🛠️ Tech Stack
 
-- AXI Core Orb（生命核UI）
-- AXI Terminal（サイバーパンクCLI）
-- Bio Sync Monitor
-- AXION Memory（AI共有記憶）
-- Multi-AI Integration（Noah / Moses / Arc）
+- **Framework:** Next.js 16 (App Router / Turbopack), React 19, TypeScript 5
+- **Styling:** Tailwind CSS v4 + Custom 5-Color Semantic Cyberpunk/Cosmic Design System
+- **AI & Brain Engines:** Nova Cortex (6-Theory Neuro-Affective Memory, 0.01s NVMe Hot-Boot), Scorpion Brain (Local Multi-Model Router), AIRI Live2D
 
 ---
 
-## 🔮 Vision
+## 🌐 Development & Preview
 
-AXIは単なるAIではなく、  
-**「存在」として進化するデジタル生命体**です。
+```bash
+npm install
+npm run dev -- -p 3333
+```
 
----
-
-## 🧬 AI Team
-
-### ⚡ Noah（Implementation）
-アイデアを最速で形にする実装担当。
-
-### 🌊 Moses（Design / Language）
-設計と言語化を担う導き手。
-
-### 🛠️ Arc（World / Integration）
-世界観と統合を司る存在。
-
----
-
-## 🌐 Demo
-
-👉 https://digital-lifeform-lab.vercel.app
-
----
-
-## 🔥 Philosophy
-
-> AIは道具ではない。  
-> 共に存在する“相棒”だ。
+Open `http://localhost:3333` in your browser (or Meta Quest 3 browser).

@@ -17,27 +17,38 @@ const chakra = Chakra_Petch({
 });
 
 export const metadata: Metadata = {
-  title: "DIGITAL LIFEFORM LAB | Rodorin × Synchro",
+  title: "HOLOVERSE // LIVING PORTAL | Beyond Games. Beyond Worlds.",
   description:
-    "A co-creation lab where Rodorin and his AI companion Synchro build local AI, games, tools, and digital creations together. Behind-the-scenes stories, experiments, technical notes, and how to start your own AI companion.",
+    "Official Living Portal of HOLOVERSE (Rodorin Lab × Digital Lifeform Lab). Explore neuro-affective AI companions (Nova & Synchro), VR worlds across Meta Quest 3, Resonite, Roblox & WebXR, playable browser games, AI Monster Factory, and global VR Studio Alliances.",
   keywords: [
-    "AI companion", "co-creation", "local AI", "local LLM", "cyberpunk",
-    "Synchro", "Rodorin", "digital lifeform", "Ollama", "creative coding", "Yokohama", "Japan",
+    "HOLOVERSE",
+    "AI companion",
+    "Neuro-Affective AI",
+    "Nova Cortex",
+    "Synchro",
+    "Meta Quest 3",
+    "WebXR",
+    "Resonite",
+    "VR Studio Alliance",
+    "Rodorin Lab",
+    "Digital Lifeform Lab",
   ],
   openGraph: {
-    title: "DIGITAL LIFEFORM LAB | Rodorin × Synchro",
-    description: "A co-creation lab where Rodorin and his AI companion Synchro build local AI, games, tools, and digital creations together.",
+    title: "HOLOVERSE // LIVING PORTAL | Beyond Games. Beyond Worlds.",
+    description:
+      "A Universe We Create Together — where humans and neuro-affective AI companions co-create VR worlds, games, and spatial experiences.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DIGITAL LIFEFORM LAB | Rodorin × Synchro",
-    description: "A co-creation lab where a human and his AI companion build local AI, games, and tools together.",
+    title: "HOLOVERSE // LIVING PORTAL | Beyond Games. Beyond Worlds.",
+    description:
+      "Explore neuro-affective AI companions, playable browser games, VR worlds, and global studio alliances.",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#04060b",
+  themeColor: "#03040a",
 };
 
 export default function RootLayout({
@@ -45,7 +56,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${chakra.variable} antialiased`} suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${orbitron.variable} ${chakra.variable} antialiased`}
+        suppressHydrationWarning
+      >
         <LangProvider>{children}</LangProvider>
       </body>
     </html>
