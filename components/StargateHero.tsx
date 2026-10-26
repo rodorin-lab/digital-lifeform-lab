@@ -13,8 +13,13 @@ type WarpTarget = {
 
 const WARP_TARGETS: WarpTarget[] = [
   {
-    name: "HOLOVERSE: STAR BREAKER (3D Arcade)",
-    tag: bi("PLAYABLE IN BROWSER", "ブラウザで今すぐ出撃"),
+    name: "OFFICIAL HOLOVERSE 3D WEBXR WORLD (Quest 3 / PC)",
+    tag: bi("3D SPATIAL SANCTUARY & VR", "公式3D WebXR空間＆Quest 3没入"),
+    href: "/webxr",
+  },
+  {
+    name: "HOLOVERSE: STAR BREAKER 3D (Three.js Boss Combat)",
+    tag: bi("3D SPACE COMBAT GAME", "本格3Dスペース・シューティング"),
     href: "/play/star-breaker",
   },
   {
@@ -325,11 +330,18 @@ export default function StargateHero() {
       </div>
 
       {/* Portal Roulette Controls */}
-      <div style={{ width: "100%", marginTop: 10 }}>
+      <div style={{ width: "100%", marginTop: 10, display: "grid", gap: 8 }}>
+        <a
+          href="/webxr"
+          className="btn btn-solid ac-cyan"
+          style={{ width: "100%", fontSize: "0.82rem", textDecoration: "none" }}
+        >
+          🥽 {t(bi("ENTER OFFICIAL 3D WEBXR WORLD (QUEST 3 / PC)", "公式 3D WebXR ワールドへ突入（Quest 3 / PC）"))}
+        </a>
         <button
           onClick={triggerPortalRoulette}
-          className="btn btn-solid ac-violet"
-          style={{ width: "100%", fontSize: "0.82rem" }}
+          className="btn ac-violet"
+          style={{ width: "100%", fontSize: "0.78rem" }}
         >
           {warping
             ? t(bi("⚡ ENGAGING HYPERDRIVE WARP...", "⚡ ハイパードライブ・ワープ中..."))

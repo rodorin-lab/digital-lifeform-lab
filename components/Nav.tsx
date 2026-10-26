@@ -149,6 +149,23 @@ export default function Nav() {
             </button>
           ))}
           <Link
+            href="/webxr"
+            className="font-mono"
+            style={{
+              padding: "4px 9px",
+              fontSize: 11,
+              letterSpacing: "0.08em",
+              color: "var(--cyan)",
+              border: "1px solid rgba(0,255,240,0.45)",
+              background: "rgba(0,255,240,0.12)",
+              borderRadius: 999,
+              textDecoration: "none",
+              marginLeft: 4,
+            }}
+          >
+            🥽 3D WEBXR
+          </Link>
+          <Link
             href="/alliance"
             className="font-mono"
             style={{

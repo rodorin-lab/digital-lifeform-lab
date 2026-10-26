@@ -199,18 +199,33 @@ export type HangarProject = {
 
 export const hangarProjects: HangarProject[] = [
   {
+    id: "official-webxr-world",
+    name: "HOLOVERSE // OFFICIAL 3D WEBXR WORLD",
+    category: "WORLDS",
+    status: "QUEST 3 READY",
+    accent: "cyan",
+    tech: ["WebXR Immersive-VR/AR", "Three.js 3D", "Quest 3 Controllers", "3D Companions"],
+    desc: bi(
+      "Step inside the 3D HOLOVERSE Command Bridge on Meta Quest 3 (Full VR or Mixed Reality Passthrough) or PC! Interact with 3D Nova & Synchro, summon 3D Boss Monsters, shoot Holo-Orbs with laser pointers, and engage Hyperdrive Warp!",
+      "Meta Quest 3（フルVR＆MRパススルー対応）やPCでそのまま入れる公式3D WebXR空間！3Dのノヴァ＆シンクロと触れ合い、3Dモンスターを召喚し、レーザーでオーブを撃って超新星花火やハイパーワープを体験！",
+    ),
+    playUrl: "/webxr",
+    playLabel: bi("Enter 3D WebXR World", "公式3D WebXR空間へ突入"),
+    repoUrl: LINKS.github,
+  },
+  {
     id: "star-breaker",
-    name: "HOLOVERSE: STAR BREAKER",
+    name: "HOLOVERSE: STAR BREAKER 3D",
     category: "GAMES",
     status: "PLAYABLE",
     accent: "violet",
-    tech: ["HTML5 Canvas", "60fps Spatial Arcade", "Quest 3 Pointer Ready"],
+    tech: ["Three.js 3D WebGL", "4-Tier Weapons & Bosses", "WebAudio Synth"],
     desc: bi(
-      "Defend the HOLOVERSE Stargate with Nova & Synchro! A fast-paced cosmic interceptor playable with mouse, touch, keyboard, or Meta Quest 3 laser pointer.",
-      "ノヴァ＆シンクロと一緒にHOLOVERSEスターゲイトを防衛せよ！マウス・タッチ・キーボード・Meta Quest 3レーザーポインター対応のコズミック・シューティング！",
+      "Full 3D WebGL space combat simulator! Pilot the STRIKER-NOVA X-01 through the Cyber Trench, evolve weapons up to LV.4, battle giant 3D Boss Titans, and unleash Nova's Supernova Shockwave!",
+      "Three.jsフル3Dへと大進化した本格スペース・シューティング！4段階の武器進化、緊急回避バレルロール、巨大3Dボス『リヴァイアサン』戦、ノヴァの声付き超新星必殺技を搭載！",
     ),
     playUrl: "/play/star-breaker",
-    playLabel: bi("Launch Star Breaker", "今すぐ出撃する"),
+    playLabel: bi("Launch 3D Star Breaker", "3Dスターブレイカー出撃"),
     repoUrl: LINKS.github,
   },
   {
